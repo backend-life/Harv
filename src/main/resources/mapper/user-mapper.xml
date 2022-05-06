@@ -1,0 +1,129 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper-->
+<!--PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"-->
+<!--"http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="com.nowcoder.community.dao.UserMapper">-->
+<!--&lt;!&ndash;namespace后面写的是当前Mapper映射器所服务的那个Mapper接口的全类名，注意****全类名从main/java目录之后的包开始写****&ndash;&gt;-->
+
+<!--&lt;!&ndash;同下&ndash;&gt;-->
+<!--<sql id="insertFields">-->
+<!--username, password, salt, email, type, status, activation_code, header_url, create_time-->
+<!--</sql>-->
+
+<!--&lt;!&ndash;用这个去简化查询时候select后面要写很多字段的问题，如果没有这个，select后面就要写id, username, password, salt, email, type, status, activation_code, header_url, create_time&ndash;&gt;-->
+<!--<sql id="selectFields">-->
+<!--id, username, password, salt, email, type, status, activation_code, header_url, create_time-->
+<!--</sql>-->
+
+
+<!--&lt;!&ndash;查询方法的sql语句&ndash;&gt;-->
+<!--<select id="selectById" resultType="User">-->
+    <!--&#45;&#45; 这个id的值要和Mapper接口中的方法名一致，表示映射,resultType的值就是方法的返回值类型，本来这里resultType的值要写User的全限定名的，但因为mybatis.type-aliases-package=com.nowcoder.community.entity，我们已经配置了告诉实体类包在哪里，所以这里写个实体类就可以-->
+<!--select <include refid="selectFields"></include>-->
+<!--from user-->
+<!--where id = #{id}-->
+<!--&#45;&#45;这个#{id}要跟Mapper接口里面对应方法的方法形参名一致，就能传过来-->
+<!--</select>-->
+
+<!--<select id="selectByName" resultType="User">-->
+<!--select <include refid="selectFields"></include>-->
+<!--from user-->
+<!--where username = #{username}-->
+<!--</select>-->
+
+<!--<select id="selectByEmail" resultType="User">-->
+<!--select <include refid="selectFields"></include>-->
+<!--from user-->
+<!--where email = #{email}-->
+<!--</select>-->
+
+
+<!--&lt;!&ndash;插入方法的sql语句&ndash;&gt;-->
+<!--<insert id="insertUser" parameterType="User" keyProperty="id">-->
+<!--&#45;&#45; parameterType的值就是你插入方法的形参类型，本来也应该写User的全限定名的，同上面,keyProperty的值，要和你要往哪个表里面插入，然后这个表的id字段对应的这个表的实体类中的属性名一样，这样往表插入数据的时候，会将自动增长的id值用setter方法给实体类的这个属性-->
+<!--insert into user (<include refid="insertFields"></include>)-->
+<!--values(#{username}, #{password}, #{salt}, #{email}, #{type}, #{status}, #{activationCode}, #{headerUrl}, #{createTime})-->
+<!--&#45;&#45;         这里因为插入方法形参是实体类User，所以这里values后面写User里面的属性名，然后形参传入User实例的时候，会自动将User里面的属性传入-->
+<!--</insert>-->
+
+
+<!--&lt;!&ndash;更新方法的sql语句&ndash;&gt;-->
+<!--<update id="updateStatus">-->
+<!--update user set status = #{status} where id = #{id}-->
+<!--</update>-->
+
+<!--<update id="updateHeader">-->
+<!--update user set header_url = #{headerUrl} where id = #{id}-->
+<!--</update>-->
+
+<!--<update id="updatePassword">-->
+<!--update user set password = #{password} where id = #{id}-->
+<!--</update>-->
+
+<!--</mapper>-->
+
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;Mapper映射器的模板，可以从Mybatis官网找到&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;<?xml version="1.0" encoding="UTF-8" ?>&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;<!DOCTYPE mapper&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;"http://mybatis.org/dtd/mybatis-3-mapper.dtd">&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;<mapper namespace="com.nowcoder.community.dao.UserMapper">&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;</mapper>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;<?xml version="1.0" encoding="UTF-8" ?>&ndash;&gt;-->
+<!--&lt;!&ndash;<!DOCTYPE mapper&ndash;&gt;-->
+        <!--&lt;!&ndash;PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"&ndash;&gt;-->
+        <!--&lt;!&ndash;"http://mybatis.org/dtd/mybatis-3-mapper.dtd">&ndash;&gt;-->
+<!--&lt;!&ndash;<mapper namespace="com.nowcoder.community.dao.UserMapper">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<sql id="insertFields">&ndash;&gt;-->
+        <!--&lt;!&ndash;username, password, salt, email, type, status, activation_code, header_url, create_time&ndash;&gt;-->
+    <!--&lt;!&ndash;</sql>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<sql id="selectFields">&ndash;&gt;-->
+        <!--&lt;!&ndash;id, username, password, salt, email, type, status, activation_code, header_url, create_time&ndash;&gt;-->
+    <!--&lt;!&ndash;</sql>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<select id="selectById" resultType="User">&ndash;&gt;-->
+        <!--&lt;!&ndash;select <include refid="selectFields"></include>&ndash;&gt;-->
+        <!--&lt;!&ndash;from user&ndash;&gt;-->
+        <!--&lt;!&ndash;where id = #{id}&ndash;&gt;-->
+    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<select id="selectByName" resultType="User">&ndash;&gt;-->
+        <!--&lt;!&ndash;select <include refid="selectFields"></include>&ndash;&gt;-->
+        <!--&lt;!&ndash;from user&ndash;&gt;-->
+        <!--&lt;!&ndash;where username = #{username}&ndash;&gt;-->
+    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<select id="selectByEmail" resultType="User">&ndash;&gt;-->
+        <!--&lt;!&ndash;select <include refid="selectFields"></include>&ndash;&gt;-->
+        <!--&lt;!&ndash;from user&ndash;&gt;-->
+        <!--&lt;!&ndash;where email = #{email}&ndash;&gt;-->
+    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<insert id="insertUser" parameterType="User" keyProperty="id">&ndash;&gt;-->
+        <!--&lt;!&ndash;insert into user (<include refid="insertFields"></include>)&ndash;&gt;-->
+        <!--&lt;!&ndash;values(#{username}, #{password}, #{salt}, #{email}, #{type}, #{status}, #{activationCode}, #{headerUrl}, #{createTime})&ndash;&gt;-->
+    <!--&lt;!&ndash;</insert>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<update id="updateStatus">&ndash;&gt;-->
+        <!--&lt;!&ndash;update user set status = #{status} where id = #{id}&ndash;&gt;-->
+    <!--&lt;!&ndash;</update>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<update id="updateHeader">&ndash;&gt;-->
+        <!--&lt;!&ndash;update user set header_url = #{headerUrl} where id = #{id}&ndash;&gt;-->
+    <!--&lt;!&ndash;</update>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<update id="updatePassword">&ndash;&gt;-->
+        <!--&lt;!&ndash;update user set password = #{password} where id = #{id}&ndash;&gt;-->
+    <!--&lt;!&ndash;</update>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</mapper>&ndash;&gt;-->
+
+
+
+
